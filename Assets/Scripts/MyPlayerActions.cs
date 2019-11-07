@@ -40,19 +40,19 @@ public class MyPlayerActions : PlayerActionSet
 
     private void CreateDefaultBindings()
     {
-        Right.AddDefaultBinding(Key.RightArrow);
+        Right.AddDefaultBinding(Key.D);
         Right.AddDefaultBinding(InputControlType.LeftStickRight);
         Right.AddDefaultBinding(InputControlType.DPadRight);
         
-        Left.AddDefaultBinding(Key.LeftArrow);
+        Left.AddDefaultBinding(Key.A);
         Left.AddDefaultBinding(InputControlType.LeftStickLeft);
         Left.AddDefaultBinding(InputControlType.DPadLeft);
         
-        Up.AddDefaultBinding(Key.UpArrow);
+        Up.AddDefaultBinding(Key.W);
         Up.AddDefaultBinding(InputControlType.LeftStickUp);
         Up.AddDefaultBinding(InputControlType.DPadUp);
         
-        Down.AddDefaultBinding(Key.DownArrow);
+        Down.AddDefaultBinding(Key.S);
         Down.AddDefaultBinding(InputControlType.LeftStickDown);
         Down.AddDefaultBinding(InputControlType.DPadDown);
         
@@ -61,8 +61,12 @@ public class MyPlayerActions : PlayerActionSet
         Shoot.AddDefaultBinding(InputControlType.RightTrigger);
         
         RUp.AddDefaultBinding(InputControlType.RightStickUp);
+        RUp.AddDefaultBinding(Key.UpArrow);
         RDown.AddDefaultBinding(InputControlType.RightStickDown);
+        RDown.AddDefaultBinding(Key.DownArrow);
         RLeft.AddDefaultBinding(InputControlType.RightStickLeft);
+        RLeft.AddDefaultBinding(Key.LeftArrow);
         RRight.AddDefaultBinding(InputControlType.RightStickRight);
+        RRight.AddDefaultBinding(Key.RightArrow);
     }
 }
