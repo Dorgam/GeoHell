@@ -13,6 +13,8 @@ public class Damageable : MonoBehaviour
     private Color _originalColor;
     private IEnumerator _flashCoroutine;
 
+    public float CurrentHealth => currentHealth;
+
     private void Awake()
     {
         _die = GetComponent<Die>();

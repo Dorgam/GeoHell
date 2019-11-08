@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 2485255618838867139}
   - component: {fileID: 2376791559549185214}
   - component: {fileID: 1141458427103753197}
+  - component: {fileID: 7522921727190138097}
   m_Layer: 11
   m_Name: circle_enemy_bullet
   m_TagString: Untagged
@@ -145,5 +146,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 93a0951fdf69f444c8c80b60b91440a0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &7522921727190138097
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6527423646986293500}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7defe53d273b5514c8efd43fa8aa3450, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 

@@ -68,7 +68,7 @@ GameObject:
   - component: {fileID: 5094946196602594530}
   - component: {fileID: 8599787387625176691}
   - component: {fileID: 6226577400227486429}
-  - component: {fileID: -5105626867089965186}
+  - component: {fileID: -7919124541746975691}
   m_Layer: 10
   m_Name: traingle_enemy
   m_TagString: Untagged
@@ -274,7 +274,7 @@ PolygonCollider2D:
     - - {x: 0, y: 0.5}
       - {x: -0.4330127, y: -0.25000003}
       - {x: 0.43301272, y: -0.24999996}
---- !u!114 &-5105626867089965186
+--- !u!114 &-7919124541746975691
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -283,7 +283,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 679248247726273545}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a42e9c6a828e41e4fbc4d1b3acf7b781, type: 3}
+  m_Script: {fileID: 11500000, guid: e273c99636b00ad43bf946ef7028b75a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &2046589841857622787
