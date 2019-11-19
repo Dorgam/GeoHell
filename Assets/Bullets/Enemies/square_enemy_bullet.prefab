@@ -97,8 +97,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d9fe4b5edf094bf40abe2a7b24583f2a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  onDeathParticleSystem: {fileID: 0}
+  onDeathParticleSystem: {fileID: 461985399947705512, guid: 67bb7aa9ad37f114e9eb163fe99dba69,
+    type: 3}
   inflictedDamage: 5
+  shakeScreenOnDamage: 1
 --- !u!50 &2485255618838867139
 Rigidbody2D:
   serializedVersion: 4

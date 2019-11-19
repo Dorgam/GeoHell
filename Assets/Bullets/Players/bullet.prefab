@@ -143,8 +143,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d9fe4b5edf094bf40abe2a7b24583f2a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  onDeathParticleSystem: {fileID: 0}
-  inflictedDamage: 1
+  onDeathParticleSystem: {fileID: 8585247629277948684, guid: e32a57ffd6320f545aca6e20237e564f,
+    type: 3}
+  inflictedDamage: 2
+  shakeScreenOnDamage: 1
 --- !u!114 &2492438216162607331
 MonoBehaviour:
   m_ObjectHideFlags: 0
