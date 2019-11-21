@@ -69,6 +69,7 @@ GameObject:
   - component: {fileID: 8599787387625176691}
   - component: {fileID: 6226577400227486429}
   - component: {fileID: -7919124541746975691}
+  - component: {fileID: 477181173477125888}
   m_Layer: 10
   m_Name: traingle_enemy
   m_TagString: Untagged
@@ -286,6 +287,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e273c99636b00ad43bf946ef7028b75a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &477181173477125888
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 679248247726273545}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: be23f81a6cfd72f4c8380cc3f38141a0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 4
 --- !u!1 &2046589841857622787
 GameObject:
   m_ObjectHideFlags: 0

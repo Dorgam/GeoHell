@@ -1,0 +1,83 @@
+{
+    "waves": [
+        {
+            "name": "wave1",
+            "spawns": [
+                {
+                    "delayBeforeSpawn": 0,
+                    "enemies": [
+                        {
+                            "name": "circleRight",
+                            "spawnLocation": [3,8],
+                            "targetLocation": [3,5]
+                        },
+                        {
+                            "name": "circleLeft",
+                            "spawnLocation": [3,1],
+                            "targetLocation": [3,4]
+                        }
+                    ]
+                },
+                {
+                    "delayBeforeSpawn": 10,
+                    "enemies": [
+                        {
+                            "name": "horizontalSquare",
+                            "spawnLocation": [
+                                1,
+                                4
+                            ],
+                            "targetLocation": [
+                                2,
+                                4
+                            ]
+                        },
+                        {
+                            "name": "verticalSquare",
+                            "spawnLocation": [
+                                3,
+                                8
+                            ],
+                            "targetLocation": [
+                                3,
+                                3
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "wave2",
+            "spawns": [
+                {
+                    "delayBeforeSpawn": 0,
+                    "enemies": [
+                        {
+                            "name": "triangle",
+                            "spawnLocation": [
+                                5,
+                                1
+                            ],
+                            "targetLocation": [
+                                3,
+                                3
+                            ]
+                        },
+                        {
+                            "name": "triangle",
+                            "spawnLocation": [
+                                5,
+                                8
+                            ],
+                            "targetLocation": [
+                                3,
+                                6
+                            ]
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}
