@@ -1,17 +1,21 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
-public class UpdateEnemyCount : MonoBehaviour
+namespace GeoHell.AdaptiveMusicSystem
 {
-    private void Awake()
+    /// <summary>
+    /// A component that is placed on enemies gameObjects to update the count of enemies when they are created
+    /// and when they are destroyed
+    /// </summary>
+    public class UpdateEnemyCount : MonoBehaviour
     {
-        GameParameters.Instance.EnemiesAlive++;
-    }
+        private void Awake()
+        {
+            GameParameters.Instance.EnemiesAlive++;
+        }
 
-    private void OnDestroy()
-    {
-        GameParameters.Instance.EnemiesAlive--;
+        private void OnDestroy()
+        {
+            GameParameters.Instance.EnemiesAlive--;
+        }
     }
 }

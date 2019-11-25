@@ -1,12 +1,15 @@
 ﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
 
-[Serializable]
-public class Enemy
+namespace GeoHell.ConductorSystem
 {
-    public string name;
-    public int[] spawnLocation;
-    public int[] targetLocation;
+    /// <summary>
+    /// Used to parse the JSON description of the level
+    /// </summary>
+    [Serializable]
+    public class Enemy
+    {
+        public string name;
+        public int[] spawnLocation;
+        public int[] targetLocation;
+    }
 }

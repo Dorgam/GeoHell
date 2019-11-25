@@ -1,10 +1,14 @@
 ﻿using System;
-using System.Collections;
-using System.Collections.Generic;
 using RotaryHeart.Lib.SerializableDictionary;
 using UnityEngine;
 
-[Serializable]
-public class EnemyDictionary : SerializableDictionaryBase<string, GameObject>
+namespace GeoHell.ConductorSystem
 {
+    /// <summary>
+    /// Used to create a serializable view of EnemyDictionary in the Unity scene.
+    /// </summary>
+    [Serializable]
+    public class EnemyDictionary : SerializableDictionaryBase<string, GameObject>
+    {
+    }
 }

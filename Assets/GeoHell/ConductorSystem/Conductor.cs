@@ -1,67 +1,73 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections;
+using GeoHell.AdaptiveMusicSystem;
+using GeoHell.LevelSystem;
 using UnityEngine;
 
-public class Conductor : MonoBehaviour
+namespace GeoHell.ConductorSystem
 {
-    [SerializeField] private TextAsset playthroughJson;
-    private Playthrough _playthrough;
-    private int _currentWaveNumber;
-    private EnemyInstantiator _instantiator;
-
-    private void Awake()
+    /// <summary>
+    /// This component is responsible for generating the level based on JSON description that is directly
+    /// referenced in the scene.
+    /// </summary>
+    public class Conductor : MonoBehaviour
     {
-        _playthrough = JsonUtility.FromJson<Playthrough>(playthroughJson.text);
-        _instantiator = GetComponent<EnemyInstantiator>();
-    }
+        [SerializeField] private TextAsset playthroughJson;
+        private Playthrough _playthrough;
+        private int _currentWaveNumber;
+        private EnemyInstantiator _instantiator;
 
-    private void Start()
-    {
-        StartCoroutine(StartPlaythrough(_playthrough));
-    }
-
-    private IEnumerator StartPlaythrough(Playthrough playthrough)
-    {
-        for (int i = 0; i < playthrough.waves.Length; i++)
+        private void Awake()
         {
-            _currentWaveNumber = i;
-            StartWave(playthrough.waves[i]);
-            yield return new WaitForSeconds(1);
-            while (!IsWaveDone(i))
+            _playthrough = JsonUtility.FromJson<Playthrough>(playthroughJson.text);
+            _instantiator = GetComponent<EnemyInstantiator>();
+        }
+
+        private void Start()
+        {
+            StartCoroutine(StartPlaythrough(_playthrough));
+        }
+
+        private IEnumerator StartPlaythrough(Playthrough playthrough)
+        {
+            for (int i = 0; i < playthrough.waves.Length; i++)
             {
-                yield return null;
+                _currentWaveNumber = i;
+                StartWave(playthrough.waves[i]);
+                yield return new WaitForSeconds(1);
+                while (!IsWaveDone(i))
+                {
+                    yield return null;
+                }
             }
-            Debug.Log("Wave is Done!");
+            LevelManager.Instance.LoadLevel(Level.Win);
         }
-        LevelManager.Instance.LoadLevel(Level.Win);
-    }
 
-    private bool IsWaveDone(int waveIndex)
-    {
-        return GameParameters.Instance.EnemiesAlive == 0;
-    }
-
-    private void StartWave(Wave wave)
-    {
-        for (int i=0; i < wave.spawns.Length; i++)
+        private bool IsWaveDone(int waveIndex)
         {
-            StartCoroutine(StartSpawn(wave.spawns[i]));
+            return GameParameters.Instance.EnemiesAlive == 0;
         }
-    }
 
-    private IEnumerator StartSpawn(Spawn spawn)
-    {
-        yield return new WaitForSeconds(spawn.delayBeforeSpawn);
-        for (int i = 0; i < spawn.enemies.Length; i++)
+        private void StartWave(Wave wave)
         {
-            SpawnEnemy(spawn.enemies[i]);
+            foreach (var spawn in wave.spawns)
+            {
+                StartCoroutine(StartSpawn(spawn));
+            }
         }
-    }
 
-    private GameObject SpawnEnemy(Enemy enemy)
-    {
-        return _instantiator.InstantiateEnemy(enemy.name, new Vector2(enemy.spawnLocation[0], enemy.spawnLocation[1]),
-            new Vector2(enemy.targetLocation[0], enemy.targetLocation[1]));
+        private IEnumerator StartSpawn(Spawn spawn)
+        {
+            yield return new WaitForSeconds(spawn.delayBeforeSpawn);
+            foreach (var enemy in spawn.enemies)
+            {
+                SpawnEnemy(enemy);
+            }
+        }
+
+        private GameObject SpawnEnemy(Enemy enemy)
+        {
+            return _instantiator.InstantiateEnemy(enemy.name, new Vector2(enemy.spawnLocation[0], enemy.spawnLocation[1]),
+                new Vector2(enemy.targetLocation[0], enemy.targetLocation[1]));
+        }
     }
 }

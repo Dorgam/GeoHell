@@ -1,18 +1,22 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
-public class Die : MonoBehaviour
+namespace GeoHell.MortalSystem
 {
-    [SerializeField] private ParticleSystem dyingEffect;
-    
-    public void StartDying()
+    /// <summary>
+    /// A component that allows a gameObject to die with style (spawning a particle system)
+    /// </summary>
+    public class Die : MonoBehaviour
     {
-        if (dyingEffect != null)
+        [SerializeField] private ParticleSystem dyingEffect;
+    
+        public void StartDying()
         {
-            Instantiate(dyingEffect, transform);
-        }
+            if (dyingEffect != null)
+            {
+                Instantiate(dyingEffect, transform);
+            }
         
-        Destroy(gameObject);
+            Destroy(gameObject);
+        }
     }
 }

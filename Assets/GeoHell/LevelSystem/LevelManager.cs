@@ -1,12 +1,16 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using GeoHell.Utils;
 using UnityEngine.SceneManagement;
 
-public class LevelManager : Singleton<LevelManager>
+namespace GeoHell.LevelSystem
 {
-    public void LoadLevel(Level level)
+    /// <summary>
+    /// Responsible for loading levels
+    /// </summary>
+    public class LevelManager : Singleton<LevelManager>
     {
-        SceneManager.LoadScene(level.ToString());
+        public void LoadLevel(Level level)
+        {
+            SceneManager.LoadScene(level.ToString());
+        }
     }
 }

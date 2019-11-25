@@ -1,52 +1,58 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using BehaviorDesigner.Runtime;
 using BehaviorDesigner.Runtime.Tasks;
 using UnityEngine;
 
-public class Oscillate : Action
+namespace GeoHell.EnemyActions
 {
-    public SharedBool isHorizontal;
-    public SharedBool startPositive;
-    public SharedFloat speed;
-    public SharedFloat secondsBetweenDirectionChange;
-    private IEnumerator _oscillateCoroutine;
-    private Rigidbody2D _rigidbody2D;
-    private Vector2 direction;
-
-    public override void OnStart()
+    /// <summary>
+    /// An enemy task in the behavior tree that allows the enemy to oscillate between movement directions either
+    /// horizontally or vertically.
+    /// </summary>
+    public class Oscillate : Action
     {
-        _rigidbody2D = GetComponent<Rigidbody2D>();
-        direction = isHorizontal.Value ? Vector2.right : Vector2.up;
-        direction = startPositive.Value ? direction : -direction;
+        public SharedBool IsHorizontal;
+        public SharedBool StartPositive;
+        public SharedFloat Speed;
+        public SharedFloat SecondsBetweenDirectionChange;
+        private IEnumerator _oscillateCoroutine;
+        private Rigidbody2D _rigidbody2D;
+        private Vector2 _direction;
+
+        public override void OnStart()
+        {
+            _rigidbody2D = GetComponent<Rigidbody2D>();
+            _direction = IsHorizontal.Value ? Vector2.right : Vector2.up;
+            _direction = StartPositive.Value ? _direction : -_direction;
         
-        if (_oscillateCoroutine != null)
+            if (_oscillateCoroutine != null)
+            {
+                StopCoroutine(_oscillateCoroutine);
+            }
+
+            _oscillateCoroutine = OscillateIe();
+            StartCoroutine(_oscillateCoroutine);
+        }
+
+        public override TaskStatus OnUpdate()
+        {
+            return TaskStatus.Running;
+        }
+
+        private IEnumerator OscillateIe()
+        {
+            while (true)
+            {
+                _rigidbody2D.velocity = _direction * Speed.Value;
+                yield return new WaitForSeconds(SecondsBetweenDirectionChange.Value);
+                _rigidbody2D.velocity = -_direction * Speed.Value;
+                yield return new WaitForSeconds(SecondsBetweenDirectionChange.Value);
+            }
+        }
+
+        public override void OnEnd()
         {
             StopCoroutine(_oscillateCoroutine);
         }
-
-        _oscillateCoroutine = OscillateIe();
-        StartCoroutine(_oscillateCoroutine);
-    }
-
-    public override TaskStatus OnUpdate()
-    {
-        return TaskStatus.Running;
-    }
-
-    private IEnumerator OscillateIe()
-    {
-        while (true)
-        {
-            _rigidbody2D.velocity = direction * speed.Value;
-            yield return new WaitForSeconds(secondsBetweenDirectionChange.Value);
-            _rigidbody2D.velocity = -direction * speed.Value;
-            yield return new WaitForSeconds(secondsBetweenDirectionChange.Value);
-        }
-    }
-
-    public override void OnEnd()
-    {
-        StopCoroutine(_oscillateCoroutine);
     }
 }

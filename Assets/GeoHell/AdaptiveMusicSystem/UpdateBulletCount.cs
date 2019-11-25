@@ -1,17 +1,21 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
-public class UpdateBulletCount : MonoBehaviour
+namespace GeoHell.AdaptiveMusicSystem
 {
-    private void Awake()
+    /// <summary>
+    /// A component that is placed on bullets to update the total count of bullets when
+    /// they are created and when they are destroyed.
+    /// </summary>
+    public class UpdateBulletCount : MonoBehaviour
     {
-        GameParameters.Instance.BulletsAlive++;
-    }
+        private void Awake()
+        {
+            GameParameters.Instance.BulletsAlive++;
+        }
 
-    private void OnDestroy()
-    {
-        GameParameters.Instance.BulletsAlive--;
+        private void OnDestroy()
+        {
+            GameParameters.Instance.BulletsAlive--;
+        }
     }
 }

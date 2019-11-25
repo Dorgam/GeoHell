@@ -1,63 +1,74 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections;
 using BehaviorDesigner.Runtime;
+using GeoHell.MortalSystem;
+using GeoHell.Utils;
 using UnityEngine;
 
-public class GameParameters : Singleton<GameParameters>
+namespace GeoHell.AdaptiveMusicSystem
 {
-    [SerializeField] private float enemyWeight;
-    [SerializeField] private float playerHealthWeight;
-    [SerializeField] private float bulletsWeight;
-    private float bulletsAlive;
-    private int enemiesAlive;
-
-    private Damageable _playerDamageable;
-
-    public int EnemiesAlive
+    /// <summary>
+    /// This class collects game data to create accessible API for tension calculation.
+    /// </summary>
+    public class GameParameters : MonoBehaviour
     {
-        get => enemiesAlive;
-        set
+        [SerializeField] private float enemyWeight;
+        [SerializeField] private float playerHealthWeight;
+        [SerializeField] private float bulletsWeight;
+        private int _enemiesAlive;
+
+        private Damageable _playerDamageable;
+
+        public int EnemiesAlive
         {
-            enemiesAlive = value;
-            GlobalVariables.Instance.SetVariableValue("EnemiesAlive", enemiesAlive);
-        }
-    }
-
-    public float BulletsAlive
-    {
-        get => bulletsAlive;
-        set => bulletsAlive = value;
-    }
-
-    public float PlayerHealth
-    {
-        get
-        {
-            if (_playerDamageable == null)
+            get => _enemiesAlive;
+            set
             {
-                _playerDamageable = GameObject.FindGameObjectWithTag("Player").GetComponent<Damageable>();
+                _enemiesAlive = value;
+                GlobalVariables.Instance.SetVariableValue("EnemiesAlive", _enemiesAlive);
             }
-
-            return _playerDamageable.CurrentHealth;
         }
-    }
 
-    public float Tension => enemiesAlive * enemyWeight + PlayerHealth * playerHealthWeight + bulletsAlive * bulletsWeight;
-
-    private void Start()
-    {
-        DebugGUI.SetGraphProperties("tension", "Tension", 0, 1500, 0, new Color(1, 1, 0), true);
-        StartCoroutine(ReportTension());
-    }
-
-    private IEnumerator ReportTension()
-    {
-        yield return new WaitForSeconds(5);
-        while (true)
+        public float BulletsAlive { get; set; }
+        
+        public static GameParameters Instance;
+    
+        private void Awake() 
         {
-            DebugGUI.Graph("tension", Tension);
-            yield return new WaitForSeconds(0.5f);
+            if(!Instance)
+            {
+                Instance = this;
+            }
+        }
+
+        public float PlayerHealth
+        {
+            get
+            {
+                if (_playerDamageable == null)
+                {
+                    _playerDamageable = GameObject.FindGameObjectWithTag("Player").GetComponent<Damageable>();
+                }
+
+                return _playerDamageable.CurrentHealth;
+            }
+        }
+
+        public float Tension => _enemiesAlive * enemyWeight + PlayerHealth * playerHealthWeight + BulletsAlive * bulletsWeight;
+
+        private void Start()
+        {
+            DebugGUI.SetGraphProperties("tension", "Tension", 0, 1500, 0, new Color(1, 1, 0), true);
+            StartCoroutine(ReportTension());
+        }
+
+        private IEnumerator ReportTension()
+        {
+            yield return new WaitForSeconds(5);
+            while (true)
+            {
+                DebugGUI.Graph("tension", Tension);
+                yield return new WaitForSeconds(0.5f);
+            }
         }
     }
 }

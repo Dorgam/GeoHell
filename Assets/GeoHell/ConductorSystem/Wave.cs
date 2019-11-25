@@ -1,11 +1,14 @@
 ﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
 
-[Serializable]
-public class Wave
+namespace GeoHell.ConductorSystem
 {
-    public string name;
-    public Spawn[] spawns;
+    /// <summary>
+    /// Used to parse the JSON description of the level
+    /// </summary>
+    [Serializable]
+    public class Wave
+    {
+        public string name;
+        public Spawn[] spawns;
+    }
 }

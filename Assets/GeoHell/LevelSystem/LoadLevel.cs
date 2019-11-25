@@ -4,23 +4,32 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public enum Level
+namespace GeoHell.LevelSystem
 {
-    Main,
-    Game,
-    Win,
-    Lose
-}
-
-public class LoadLevel : MonoBehaviour
-{
-    public Level level;
-    
-    private void Start()
+    /// <summary>
+    /// List of all game levels
+    /// </summary>
+    public enum Level
     {
-        GetComponent<Button>().onClick.AddListener(() =>
+        Main,
+        Game,
+        Win,
+        Lose
+    }
+
+    /// <summary>
+    /// A component for loading levels on button click, useful for menus
+    /// </summary>
+    public class LoadLevel : MonoBehaviour
+    {
+        public Level level;
+    
+        private void Start()
         {
-            LevelManager.Instance.LoadLevel(level);
-        });
+            GetComponent<Button>().onClick.AddListener(() =>
+            {
+                LevelManager.Instance.LoadLevel(level);
+            });
+        }
     }
 }

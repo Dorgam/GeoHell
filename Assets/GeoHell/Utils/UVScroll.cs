@@ -1,19 +1,22 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
-public class UVScroll : MonoBehaviour
+namespace GeoHell.Utils
 {
-    [SerializeField] private Vector2 speed;
-    private Renderer _renderer;
-
-    private void Awake()
+    /// <summary>
+    /// Creates the scrolling effect of backgrounds (change texture offset value)
+    /// </summary>
+    public class UVScroll : MonoBehaviour
     {
-        _renderer = GetComponent<Renderer>();
-    }
+        [SerializeField] private Vector2 speed;
+        private Renderer _renderer;
 
-    void LateUpdate() {
-        _renderer.material.mainTextureOffset = speed * Time.time;
+        private void Awake()
+        {
+            _renderer = GetComponent<Renderer>();
+        }
+
+        private void LateUpdate() {
+            _renderer.material.mainTextureOffset = speed * Time.time;
+        }
     }
 }

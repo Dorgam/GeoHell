@@ -1,21 +1,25 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
-public class Singleton<T> : MonoBehaviour where T: Singleton<T>
+namespace GeoHell.Utils
 {
-    public static T Instance;
-    
-    private void Awake() 
+    /// <summary>
+    /// Singleton design pattern, useful for manager like objects
+    /// </summary>
+    public class Singleton<T> : MonoBehaviour where T: Singleton<T>
     {
-        if(!Instance)
+        public static T Instance;
+    
+        private void Awake() 
         {
-            Instance = this as T;
-            DontDestroyOnLoad(gameObject);
-        }
-        else
-        {
-            Destroy(gameObject);
+            if(!Instance)
+            {
+                Instance = this as T;
+                DontDestroyOnLoad(gameObject);
+            }
+            else
+            {
+                Destroy(gameObject);
+            }
         }
     }
 }

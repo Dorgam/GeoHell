@@ -1,73 +1,70 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;
 using InControl;
+using UnityEngine;
 
-public enum CharacterType
+namespace GeoHell.PlayerActions
 {
-    Right,
-    Left
-}
-
-public class Move : MonoBehaviour
-{
-    public float speed;
-    public CharacterType characterType;
-    private Rigidbody2D _rigidbody2D;
-
-    private void Awake()
+    /// <summary>
+    /// A component that allows the player to move his character
+    /// </summary>
+    public class Move : MonoBehaviour
     {
-        _rigidbody2D = GetComponent<Rigidbody2D>();
-    }
+        public float speed;
+        private Rigidbody2D _rigidbody2D;
 
-    public void SetMovement(Vector2 v)
-    {
-        if(_rigidbody2D == null)
-            return;
+        private void Awake()
+        {
+            _rigidbody2D = GetComponent<Rigidbody2D>();
+        }
+
+        public void SetMovement(Vector2 v)
+        {
+            if(_rigidbody2D == null)
+                return;
         
-        _rigidbody2D.velocity = v * speed;
-    }
+            _rigidbody2D.velocity = v * speed;
+        }
 
-    public void StartMoving(string movement)
-    {
-        Vector2 currentVelocity = _rigidbody2D.velocity;
-        float directionMod = characterType == CharacterType.Right ? 1 : -1;
-        
-        if (movement == "Right")
+        public void StartMoving(string movement)
         {
-            _rigidbody2D.velocity = new Vector2(directionMod * speed, currentVelocity.y);
-        }
-        else if(movement == "Left")
-        {
-            _rigidbody2D.velocity = new Vector2(directionMod * -speed, currentVelocity.y);
-        }
-        else if(movement == "Up")
-        {
-            _rigidbody2D.velocity = new Vector2(currentVelocity.x, directionMod * speed);
-        }
-        else
-        {
-            _rigidbody2D.velocity = new Vector2(currentVelocity.x, directionMod * -speed);
-        }
-    }
+            Vector2 currentVelocity = _rigidbody2D.velocity;
 
-    public void StopMoving(string movement)
-    {
-        Vector2 currentVelocity = _rigidbody2D.velocity;
-        float directionMod = characterType == CharacterType.Right ? 1 : -1;
-        
-        if (movement == "Right" || movement == "Left")
-        {
-            _rigidbody2D.velocity = new Vector2(0, currentVelocity.y);
+            if (movement == "Right")
+            {
+                _rigidbody2D.velocity = new Vector2(speed, currentVelocity.y);
+            }
+            else if(movement == "Left")
+            {
+                _rigidbody2D.velocity = new Vector2(-speed, currentVelocity.y);
+            }
+            else if(movement == "Up")
+            {
+                _rigidbody2D.velocity = new Vector2(currentVelocity.x, speed);
+            }
+            else
+            {
+                _rigidbody2D.velocity = new Vector2(currentVelocity.x, -speed);
+            }
         }
-        else if(movement == "Up" || movement == "Down")
+
+        public void StopMoving(string movement)
         {
-            _rigidbody2D.velocity = new Vector2(currentVelocity.x, 0);
-        }
-        else
-        {
-            _rigidbody2D.velocity = new Vector2(currentVelocity.x, 0);
+            Vector2 currentVelocity = _rigidbody2D.velocity;
+
+            if (movement == "Right" || movement == "Left")
+            {
+                _rigidbody2D.velocity = new Vector2(0, currentVelocity.y);
+            }
+            else if(movement == "Up" || movement == "Down")
+            {
+                _rigidbody2D.velocity = new Vector2(currentVelocity.x, 0);
+            }
+            else
+            {
+                _rigidbody2D.velocity = new Vector2(currentVelocity.x, 0);
+            }
         }
     }
 }

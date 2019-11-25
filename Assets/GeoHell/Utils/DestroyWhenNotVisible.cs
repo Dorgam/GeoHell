@@ -1,12 +1,15 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
-public class DestroyWhenNotVisible : MonoBehaviour
+namespace GeoHell.Utils
 {
-    private void OnBecameInvisible()
+    /// <summary>
+    /// When an item escapes screen view, it is destroyed (useful for bullets)
+    /// </summary>
+    public class DestroyWhenNotVisible : MonoBehaviour
     {
-        Destroy(gameObject);
+        private void OnBecameInvisible()
+        {
+            Destroy(gameObject);
+        }
     }
 }

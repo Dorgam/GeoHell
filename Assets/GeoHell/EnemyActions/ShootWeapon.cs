@@ -1,22 +1,26 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using BehaviorDesigner.Runtime;
+﻿using BehaviorDesigner.Runtime;
 using BehaviorDesigner.Runtime.Tasks;
-using UnityEngine;
+using GeoHell.PlayerActions;
 
-public class ShootWeapon : Action
+namespace GeoHell.EnemyActions
 {
-    public SharedString WeaponName;
-    private Shoot _shoot;
+    /// <summary>
+    /// An enemy task for the behavior tree that allows the enemy to start shooting bullets
+    /// </summary>
+    public class ShootWeapon : Action
+    {
+        public SharedString WeaponName;
+        private Shoot _shoot;
     
-    public override void OnStart()
-    {
-        _shoot = GetComponent<Shoot>();
-    }
+        public override void OnStart()
+        {
+            _shoot = GetComponent<Shoot>();
+        }
 
-    public override TaskStatus OnUpdate()
-    {
-        _shoot.StartShooting(WeaponName.Value);
-        return TaskStatus.Success;
+        public override TaskStatus OnUpdate()
+        {
+            _shoot.StartShooting(WeaponName.Value);
+            return TaskStatus.Success;
+        }
     }
 }

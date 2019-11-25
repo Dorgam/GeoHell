@@ -23,25 +23,13 @@
                     "enemies": [
                         {
                             "name": "horizontalSquare",
-                            "spawnLocation": [
-                                1,
-                                4
-                            ],
-                            "targetLocation": [
-                                2,
-                                4
-                            ]
+                            "spawnLocation": [1, 4],
+                            "targetLocation": [2, 4]
                         },
                         {
                             "name": "verticalSquare",
-                            "spawnLocation": [
-                                3,
-                                8
-                            ],
-                            "targetLocation": [
-                                3,
-                                3
-                            ]
+                            "spawnLocation": [3, 8],
+                            "targetLocation": [3, 3]
                         }
                     ]
                 }
@@ -55,25 +43,23 @@
                     "enemies": [
                         {
                             "name": "triangle",
-                            "spawnLocation": [
-                                5,
-                                1
-                            ],
-                            "targetLocation": [
-                                3,
-                                3
-                            ]
+                            "spawnLocation": [5, 1],
+                            "targetLocation": [3, 3]
                         },
                         {
                             "name": "triangle",
-                            "spawnLocation": [
-                                5,
-                                8
-                            ],
-                            "targetLocation": [
-                                3,
-                                6
-                            ]
+                            "spawnLocation": [5, 8],
+                            "targetLocation": [3, 6]
+                        },
+                        {
+                            "name": "triangle",
+                            "spawnLocation": [1, 4],
+                            "targetLocation": [2, 4]
+                        },
+                        {
+                            "name": "triangle",
+                            "spawnLocation": [5, 4],
+                            "targetLocation": [4, 4]
                         }
                     ]
                 }

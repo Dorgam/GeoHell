@@ -1,28 +1,32 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
-public class Weapon : MonoBehaviour
+namespace GeoHell.ShootersSystem
 {
-    public string weaponName;
-    [HideInInspector] public bool isShooting = false;
-    [SerializeField] private Muzzle[] muzzles;
-
-    public void Fire()
+    /// <summary>
+    /// Every character in the game (player or enemy) has a set of weapons that they can shoot
+    /// </summary>
+    public class Weapon : MonoBehaviour
     {
-        isShooting = true;
-        foreach (Muzzle muzzle in muzzles)
+        public string weaponName;
+        [HideInInspector] public bool isShooting = false;
+        [SerializeField] private Muzzle[] muzzles;
+
+        public void Fire()
         {
-            muzzle.Fire();
+            isShooting = true;
+            foreach (Muzzle muzzle in muzzles)
+            {
+                muzzle.Fire();
+            }
         }
-    }
 
-    public void Stop()
-    {
-        isShooting = false;
-        foreach (Muzzle muzzle in muzzles)
+        public void Stop()
         {
-            muzzle.Stop();
+            isShooting = false;
+            foreach (Muzzle muzzle in muzzles)
+            {
+                muzzle.Stop();
+            }
         }
     }
 }

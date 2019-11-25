@@ -1,10 +1,13 @@
 ﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
 
-[Serializable]
-public class Playthrough
+namespace GeoHell.ConductorSystem
 {
-    public Wave[] waves;
+    /// <summary>
+    /// Used to parse the JSON description of the level
+    /// </summary>
+    [Serializable]
+    public class Playthrough
+    {
+        public Wave[] waves;
+    }
 }

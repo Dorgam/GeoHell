@@ -1,26 +1,31 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using BehaviorDesigner.Runtime;
+﻿using BehaviorDesigner.Runtime;
 using BehaviorDesigner.Runtime.Tasks;
 using UnityEngine;
 
-public class RotateAroundSelf : Action
+namespace GeoHell.EnemyActions
 {
-    public SharedFloat _rotationSpeed;
-    private Rigidbody2D _rigidbody2D;
-
-    public override void OnStart()
+    /// <summary>
+    /// An enemy task in the behavior tree that allows enemies to constantly rotate around themselves.
+    /// Useful to spread interesting patterns of bullets.
+    /// </summary>
+    public class RotateAroundSelf : Action
     {
-        _rigidbody2D = GetComponent<Rigidbody2D>();
-    }
+        public SharedFloat RotationSpeed;
+        private Rigidbody2D _rigidbody2D;
 
-    public override void OnFixedUpdate()
-    {
-        _rigidbody2D.MoveRotation(_rigidbody2D.rotation + _rotationSpeed.Value * Time.deltaTime);
-    }
+        public override void OnStart()
+        {
+            _rigidbody2D = GetComponent<Rigidbody2D>();
+        }
 
-    public override TaskStatus OnUpdate()
-    {
-        return TaskStatus.Running;
+        public override void OnFixedUpdate()
+        {
+            _rigidbody2D.MoveRotation(_rigidbody2D.rotation + RotationSpeed.Value * Time.deltaTime);
+        }
+
+        public override TaskStatus OnUpdate()
+        {
+            return TaskStatus.Running;
+        }
     }
 }

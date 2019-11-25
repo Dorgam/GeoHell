@@ -1,11 +1,14 @@
 ﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
 
-[Serializable]
-public class Spawn
+namespace GeoHell.ConductorSystem
 {
-    public int delayBeforeSpawn;
-    public Enemy[] enemies;
+    /// <summary>
+    /// Used to parse the JSON description of the level
+    /// </summary>
+    [Serializable]
+    public class Spawn
+    {
+        public int delayBeforeSpawn;
+        public Enemy[] enemies;
+    }
 }
