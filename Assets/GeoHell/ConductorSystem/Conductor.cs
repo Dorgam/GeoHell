@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using GeoHell.AdaptiveMusicSystem;
+using GeoHell.EnemyActions;
 using GeoHell.LevelSystem;
 using UnityEngine;
 
@@ -14,12 +15,12 @@ namespace GeoHell.ConductorSystem
         [SerializeField] private TextAsset playthroughJson;
         private Playthrough _playthrough;
         private int _currentWaveNumber;
-        private EnemyInstantiator _instantiator;
+        private Instantiator _instantiator;
 
         private void Awake()
         {
             _playthrough = JsonUtility.FromJson<Playthrough>(playthroughJson.text);
-            _instantiator = GetComponent<EnemyInstantiator>();
+            _instantiator = GetComponent<Instantiator>();
         }
 
         private void Start()
@@ -51,23 +52,36 @@ namespace GeoHell.ConductorSystem
         {
             foreach (var spawn in wave.spawns)
             {
-                StartCoroutine(StartSpawn(spawn));
+                StartCoroutine(StartWaveSpawn(spawn));
+            }
+
+            if(wave.pickups == null) return;
+            
+            foreach (var pickup in wave.pickups)
+            {
+                StartCoroutine(SpawnPickupAfterDelay(pickup));
             }
         }
 
-        private IEnumerator StartSpawn(Spawn spawn)
+        private IEnumerator SpawnPickupAfterDelay(Pickup pickup)
+        {
+            yield return new WaitForSeconds(pickup.delayBeforeSpawn);
+            InstantiateSpawn(pickup);
+        }
+
+        private IEnumerator StartWaveSpawn(Spawn spawn)
         {
             yield return new WaitForSeconds(spawn.delayBeforeSpawn);
             foreach (var enemy in spawn.enemies)
             {
-                SpawnEnemy(enemy);
+                var spawnedEnemy = InstantiateSpawn(enemy);
+                spawnedEnemy.GetComponent<SpawnMove>().StartMove(new Vector2(enemy.targetLocation[0], enemy.targetLocation[1]));
             }
         }
 
-        private GameObject SpawnEnemy(Enemy enemy)
+        private GameObject InstantiateSpawn(ISpawnable spawn)
         {
-            return _instantiator.InstantiateEnemy(enemy.name, new Vector2(enemy.spawnLocation[0], enemy.spawnLocation[1]),
-                new Vector2(enemy.targetLocation[0], enemy.targetLocation[1]));
+            return _instantiator.InstantiateSpawnable(spawn.Name, spawn.SpawnLocation);
         }
     }
 }

@@ -33,6 +33,13 @@
                         }
                     ]
                 }
+            ],
+            "pickups": [
+                {
+                    "delayBeforeSpawn": 4,
+                    "name": "pickup1",
+                    "spawnLocation": [4, 5]
+                }
             ]
         },
         {

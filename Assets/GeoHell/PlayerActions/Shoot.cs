@@ -32,6 +32,7 @@ namespace GeoHell.PlayerActions
                 newWeapon = _weapons.Single(x => x.weaponName == w.weaponName);
             }
 
+            currentWeapon.Stop();
             currentWeapon = newWeapon;
         }
 

@@ -8,7 +8,7 @@ namespace GeoHell.ConductorSystem
     /// Used to create a serializable view of EnemyDictionary in the Unity scene.
     /// </summary>
     [Serializable]
-    public class EnemyDictionary : SerializableDictionaryBase<string, GameObject>
+    public class SpawnableDictionary : SerializableDictionaryBase<string, GameObject>
     {
     }
 }

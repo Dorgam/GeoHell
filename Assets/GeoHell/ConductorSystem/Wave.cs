@@ -10,5 +10,6 @@ namespace GeoHell.ConductorSystem
     {
         public string name;
         public Spawn[] spawns;
+        public Pickup[] pickups;
     }
 }
